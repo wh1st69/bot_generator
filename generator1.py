@@ -1,5 +1,6 @@
 import os
 import shutil
+import json
 s = input('Введите адрес папки для бота:\n')
 l = ''.join(open('pattern.txt', 'r').readlines())
 l = l.format(BotKey=input('Введите ключ бота:\n'))
@@ -11,7 +12,8 @@ open('bot.py', 'w').write(l)
 open('TelegramBotData\\__init__.py', 'w').write('import TelegramBotData.inventory')
 shutil.copy(d + '\\TelegramBotData\\inventory.py', 'TelegramBotData\\inventory.py')
 shutil.copy(d + '\\TelegramBotData\\__init__.py', 'TelegramBotData\\__init__.py')
+n = int(input('Введите количество верщин в графе: '))
 open('TelegramBotData\\save.json', 'w').write('{}')
-open('TelegramBotData\\text.json', 'w').write('[]')
-open('TelegramBotData\\ways.json', 'w').write('[]')
-open('TelegramBotData\\button.json', 'w').write('[]')
+open('TelegramBotData\\text.json', 'w').write(json.dumps([''] * n, indent=4))
+open('TelegramBotData\\ways.json', 'w').write(json.dumps([[]] * n, indent=4))
+open('TelegramBotData\\button.json', 'w').write(json.dumps([[] for _ in range(n)], indent=4))
