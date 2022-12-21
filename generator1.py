@@ -1,6 +1,7 @@
 import os
 import shutil
 import json
+#
 s = input('Введите адрес папки для бота:\n')
 l = ''.join(open('pattern.txt', 'r').readlines())
 l = l.format(BotKey=input('Введите ключ бота:\n'))
