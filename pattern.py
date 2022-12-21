@@ -1,9 +1,13 @@
-s = """import telebot
+import telebot
 from telebot import types
 from json import load
 from TelegramBotData import *
-BotKey = '{BotKey}'
-bot = telebot.TeleBot(BotKey)
+bot = telebot.TeleBot(config.BotKey)
+
+inventory.Inventory._node = config.node
+inventory.Inventory._size = config.inventory_size
+inventory.Inventory._visit_req = [[] for _ in range(inventory.Inventory._node)]
+inventory.Inventory._inventory_req = [[] for _ in range(inventory.Inventory._node)]
 
 global text
 global ways
@@ -14,8 +18,8 @@ global save
 text = []
 ways = []
 button = []
-reverse_button = {{}}
-save = {{}}
+reverse_button = {}
+save = {}
 
 with open('TelegramBotData/text.json') as fp:
     text = load(fp)
@@ -30,12 +34,9 @@ for i in button:
     for v, k in enumerate(i):
         reverse_button[k] = v 
         
-print(f'{{text=}}')
-print(f'{{ways=}}')
-print(f'{{save=}}')
-print(f'{{button=}}')
-print(f'{{reverse_button=}}')
-print(f'{{BotKey=}}')
-input()
-"""
-open('pattern.txt', 'w').write(s)
+print(f'{text=}')
+print(f'{ways=}')
+print(f'{save=}')
+print(f'{button=}')
+print(f'{reverse_button=}')
+print(f'{config.BotKey=}')

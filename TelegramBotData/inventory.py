@@ -95,12 +95,6 @@ class Inventory:
         return self.visit_check(v, u) and self.inventory_check(v, u)
 
 
-Inventory._node = 50
-Inventory._size = 3
-Inventory._visit_req = [[] for _ in range(Inventory._node)]
-Inventory._inventory_req = [[] for _ in range(Inventory._node)]
-
-
 def edge(u, v):
     adjacency_list[u].append(v)
 
@@ -111,7 +105,3 @@ def vreq(u, v):
 
 def ireq(u, j):
     Inventory.inventory_req(u, j)
-
-
-def go(v, u, i):
-    return i.check(v, u)
