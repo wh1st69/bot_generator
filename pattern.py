@@ -4,10 +4,10 @@ from json import load
 from TelegramBotData import *
 bot = telebot.TeleBot(config.BotKey)
 
-inventory.Inventory._node = config.node
-inventory.Inventory._size = config.inventory_size
-inventory.Inventory._visit_req = [[] for _ in range(inventory.Inventory._node)]
-inventory.Inventory._inventory_req = [[] for _ in range(inventory.Inventory._node)]
+inventory.Inventory.node = config.node
+inventory.Inventory.size = config.inventory_size
+inventory.Inventory.visit_req = [[] for _ in range(inventory.Inventory.node)]
+inventory.Inventory.inventory_req = [[] for _ in range(inventory.Inventory.node)]
 
 global text
 global ways
