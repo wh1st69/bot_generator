@@ -38,7 +38,7 @@ for i in button:
 def save_wrapper(func):
     def wrapper(*args, **kwargs):
         func(*args, **kwargs)
-        open('TelegramBotData/save.json', 'w').write(dumps(save))
+        open('TelegramBotData/save.json', 'w').write(dumps(save, indent=4, ensure_ascii=False))
     return wrapper
 
 

@@ -13,4 +13,4 @@ for i in range(int(input('Введите количество ребер в гр
     u, v = list(map(int, input('Введите номера вершин, между которыми есть ребро (из первой во вторую) (индексация '
                                'идет с нуля): \n').split()))
     l[u].append(v)
-open('adjacency_list.json', 'w').write(json.dumps(l, indent=4))
+open('adjacency_list.json', 'w').write(json.dumps(l, indent=4, ensure_ascii=False))

@@ -17,7 +17,7 @@ shutil.copy(d + f'{sep}TelegramBotData{sep}__init__.py', f'TelegramBotData{sep}_
 shutil.copy(d + f'{sep}pattern.py', 'bot.py')
 
 open(f'TelegramBotData{sep}config.py', 'w').write(l)
-open(f'TelegramBotData{sep}save.json', 'w').write(json.dumps({}, indent=4))
-open(f'TelegramBotData{sep}text.json', 'w').write(json.dumps([''] * n, indent=4))
-open(f'TelegramBotData{sep}adjacency_list.json', 'w').write(json.dumps([[] for _ in range(n)], indent=4))
-open(f'TelegramBotData{sep}button.json', 'w').write(json.dumps([['' for _ in range(n)] for _ in range(n)], indent=4))
+open(f'TelegramBotData{sep}save.json', 'w').write(json.dumps({}, indent=4, ensure_ascii=False))
+open(f'TelegramBotData{sep}text.json', 'w').write(json.dumps([''] * n, indent=4, ensure_ascii=False))
+open(f'TelegramBotData{sep}adjacency_list.json', 'w').write(json.dumps([[] for _ in range(n)], indent=4, ensure_ascii=False))
+open(f'TelegramBotData{sep}button.json', 'w').write(json.dumps([['' for _ in range(n)] for _ in range(n)], indent=4, ensure_ascii=False))

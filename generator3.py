@@ -14,4 +14,4 @@ for i in range(int(input('Введите количество ребер в гр
     u = int(input('Введите индекс вершины (индексация с нуля): '))
     t = input('Введите текст для этой вершины:\n')
     l[u] = t
-open('text.json', 'w').write(json.dumps(l, indent=4))
+open('text.json', 'w').write(json.dumps(l, indent=4, ensure_ascii=False))
