@@ -1,25 +1,16 @@
-# import telebot
-# from telebot import types
+import telebot
+from telebot import types
 from json import load, dumps
 from TelegramBotData import *
 
-# bot = telebot.TeleBot(config.BotKey)
+bot = telebot.TeleBot(config.BotKey)
 
 inventory.Inventory.node = config.node
 inventory.Inventory.size = config.inventory_size
 inventory.Inventory.visit_req = [[] for _ in range(inventory.Inventory.node)]
 inventory.Inventory.inventory_req = [[] for _ in range(inventory.Inventory.node)]
 
-global text
-global ways
-global button
-global reverse_button
-global save
-
-text = []
-button = []
 reverse_button = {}
-save = {}
 
 with open('TelegramBotData/text.json') as fp:
     text = load(fp)

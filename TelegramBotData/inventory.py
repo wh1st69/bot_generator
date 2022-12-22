@@ -1,4 +1,3 @@
-global adjacency_list
 adjacency_list = []
 
 
