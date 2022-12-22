@@ -1,9 +1,10 @@
 import json
 import os
-s = input('Введите адрес папки для бота:\n') + '\\TelegramBotData'
+sep = '\\' if os.name == 'nt' else '/'
+s = input('Введите адрес папки для бота:\n') + f'{sep}TelegramBotData'
 os.chdir(s)
 l = []
-with open('ways.json', 'r') as fp:
+with open('adjacency_list.json', 'r') as fp:
     l = json.load(fp)
 print('Сейчас список смежости бота выглядит так (индексация с нуля):')
 for i in range(len(l)):
@@ -12,4 +13,4 @@ for i in range(int(input('Введите количество ребер в гр
     u, v = list(map(int, input('Введите номера вершин, между которыми есть ребро (из первой во вторую) (индексация '
                                'идет с нуля): \n').split()))
     l[u].append(v)
-open('ways.json', 'w').write(json.dumps(l, indent=4))
+open('adjacency_list.json', 'w').write(json.dumps(l, indent=4))

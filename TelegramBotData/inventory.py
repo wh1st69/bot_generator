@@ -105,3 +105,5 @@ def vreq(u, v):
 
 def ireq(u, j):
     Inventory.set_inventory_req(u, j)
+
+
