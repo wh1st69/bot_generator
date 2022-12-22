@@ -30,6 +30,7 @@ def save_wrapper(func):
     def wrapper(*args, **kwargs):
         func(*args, **kwargs)
         open('TelegramBotData/save.json', 'w').write(dumps(save, indent=4, ensure_ascii=False))
+
     return wrapper
 
 
@@ -39,3 +40,4 @@ print(f'{save=}')
 print(f'{button=}')
 print(f'{reverse_button=}')
 print(f'{config.BotKey=}')
+input()
