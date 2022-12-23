@@ -5,8 +5,8 @@ s = input('Введите адрес папки для бота:\n') + f'{sep}Te
 os.chdir(s)
 adj_list = json.load(open('adjacency_list.json', 'r'))
 print('Сейчас список смежости бота выглядит так (индексация с нуля):')
-for i in range(len(adj_list)):
-    print(f'Из вершины {i} можно попасть в вершины: ', *adj_list[i])
+for i, l in enumerate(adj_list):
+    print(f'Из вершины {i} можно попасть в вершины: ', *l)
 for i in range(int(input('Введите количество ребер в графе, которое вы хотите сейчас добавить: '))):
     u, v = list(map(int, input('Введите номера вершин, между которыми есть ребро (из первой во вторую) (индексация '
                                'идет с нуля): \n').split()))
