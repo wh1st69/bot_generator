@@ -2,7 +2,6 @@ import telebot
 from telebot import types
 from json import load, dumps
 from TelegramBotData import *
-from TelegramBotData import config
 
 bot = telebot.TeleBot(config.BotKey)
 
