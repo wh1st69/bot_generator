@@ -24,3 +24,11 @@ open(f'TelegramBotData{sep}adjacency_list.json', 'w').write(
     json.dumps([[] for _ in range(n)], indent=4, ensure_ascii=False))
 open(f'TelegramBotData{sep}button.json', 'w').write(
     json.dumps([['' for _ in range(n)] for _ in range(n)], indent=4, ensure_ascii=False))
+
+
+open(f'TelegramBotData{sep}inventory_list.json', 'w').write(
+    json.dumps([[] for _ in range(n)], indent=4, ensure_ascii=False))
+open(f'TelegramBotData{sep}visited_list.json', 'w').write(
+    json.dumps([[] for _ in range(n)], indent=4, ensure_ascii=False))
+open(f'TelegramBotData{sep}requests_list.json', 'w').write(
+    json.dumps([[] for _ in range(n)], indent=4, ensure_ascii=False))
