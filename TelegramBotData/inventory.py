@@ -75,9 +75,9 @@ class Inventory:
         if not len(self.inventory_req[u]):
             return True
         for i in self.inventory_req[u]:
-            if self.__inventory[i]:
-                return True
-        return False
+            if not self.__inventory[i]:
+                return False
+        return True
 
     def inventory_get(self, i: "Индекс предмета в инвенторе"):
         """Количество предметов с индексом i"""
@@ -92,15 +92,3 @@ class Inventory:
     def check(self, v: "Индекс начальной вершины", u: "Индекс конечной вершины"):
         """Проверка на возможность пройти по ребру v->u"""
         return self.visit_check(v, u) and self.inventory_check(v, u)
-
-
-def edge(u, v):
-    adjacency_list[u].append(v)
-
-
-def vreq(u, v):
-    Inventory.set_visit_req(u, v)
-
-
-def ireq(u, j):
-    Inventory.set_inventory_req(u, j)

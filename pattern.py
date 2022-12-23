@@ -20,6 +20,14 @@ with open('TelegramBotData/button.json') as fp:
     button = load(fp)
 with open('TelegramBotData/save.json') as fp:
     save = load(fp)
+with open('TelegramBotData/inventory_list.json', 'r') as fp:
+    inventory_list = load(fp)
+with open('TelegramBotData/visited_req_list.json', 'r') as fp:
+    for v, u in load(fp):
+        inventory.Inventory.set_visit_req(v, u)
+with open('TelegramBotData/inventory_req_list.json', 'r') as fp:
+    for v, j in load(fp):
+        inventory.Inventory.set_inventory_req(v, j)
 
 for i in button:
     for v, k in enumerate(i):
@@ -39,9 +47,10 @@ def save_wrapper(func):
 def any_msg(message):
     client_id = message.chat.id
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    v = 0
-    i = inventory.Inventory()
-    save[client_id] = [v, i.__dict__]
+    vertex = 0
+    inv = inventory.Inventory()
+    inv.visit_add(vertex)
+    save[client_id] = [vertex, inv.__dict__]
     bot.send_message(message.chat.id, "Нажми на команду /restart", reply_markup=keyboard)
 
 
@@ -50,47 +59,50 @@ def any_msg(message):
 def any_msg(message):
     client_id = message.chat.id
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keybord_remove = telebot.types.ReplyKeyboardRemove()
-    v = 0
-    i = inventory.Inventory()
-    bot.send_message(message.chat.id, text[0], reply_markup=keybord_remove)
-    for j in inventory.adjacency_list[v]:  # Добавление всех кнопок
-        if inventory.go(v, j, i):
-            keyboard.add(types.KeyboardButton(text=button[v][j]))
+    keyboard_remove = telebot.types.ReplyKeyboardRemove()
+    vertex = 0
+    inv = inventory.Inventory()
+    inv.visit_add(vertex)
+    bot.send_message(message.chat.id, text[0], reply_markup=keyboard_remove)
+    for possible_vertex in inventory.adjacency_list[vertex]:  # Добавление всех кнопок
+        if inv.check(vertex, possible_vertex):
+            keyboard.add(types.KeyboardButton(text=button[vertex][possible_vertex]))
     bot.send_message(message.chat.id, 'Что будете делать;)?', reply_markup=keyboard)
-    save[client_id] = [v, i.__dict__]
+    save[client_id] = [vertex, inv.__dict__]
 
 
 @bot.message_handler(content_types=["text"])
 @save_wrapper
 def any_msg(message):
     client_id = message.chat.id
-    keybord_remove = telebot.types.ReplyKeyboardRemove()
+    keyboard_remove = telebot.types.ReplyKeyboardRemove()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     if message.text not in reverse_button.keys():
         bot.send_message(message.chat.id, "Жмякай кнопки падла!", reply_markup=keyboard)
         return
-    u = reverse_button[message.text]
-    v = save[client_id][0]
-    i = inventory.Inventory()
-    print(v, u)
-    i.__dict__ = save[client_id][1]
-    if u not in inventory.adjacency_list[v]:
+    new_vertex = reverse_button[message.text]
+    current_vertex = save[client_id][0]
+    inv = inventory.Inventory()
+    print(current_vertex, new_vertex)
+    inv.__dict__ = save[client_id][1]
+    inv.visit_add(new_vertex)
+    for item in inventory_list[new_vertex]:
+        inv.inventory_add(item)
+    if new_vertex not in inventory.adjacency_list[current_vertex]:
         bot.send_message(message.chat.id, f"Жмякай кнопки падла!", reply_markup=keyboard)
         return
-    if not inventory.go(v, u, i):
+    if not inv.check(current_vertex, new_vertex):
         bot.send_message(message.chat.id, "Ты не можешь это сделать!", reply_markup=keyboard)
         return
-    bot.send_message(message.chat.id, text[u], reply_markup=keybord_remove)
+    bot.send_message(message.chat.id, text[new_vertex], reply_markup=keyboard_remove)
 
-    for j in inventory.adjacency_list[u]:
-        if inventory.go(u, j, i):
-            keyboard.add(types.KeyboardButton(text=button[u][j]))
+    for possible_vertex in inventory.adjacency_list[new_vertex]:
+        if inv.check(new_vertex, possible_vertex):
+            keyboard.add(types.KeyboardButton(text=button[new_vertex][possible_vertex]))
 
-    i.visit_add(u)
+    inv.visit_add(new_vertex)
     bot.send_message(message.chat.id, 'Что будете делать;)?', reply_markup=keyboard)
-    save[client_id] = [u, i.__dict__]
-
+    save[client_id] = [new_vertex, inv.__dict__]
 
 
 print(f'{text=}')
@@ -99,4 +111,7 @@ print(f'{save=}')
 print(f'{button=}')
 print(f'{reverse_button=}')
 print(f'{config.BotKey=}')
+print(f'{inventory_list=}')
+print(f'{inventory.Inventory.visit_req=}')
+print(f'{inventory.Inventory.inventory_req=}')
 input()
