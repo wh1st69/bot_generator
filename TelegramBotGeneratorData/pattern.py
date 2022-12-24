@@ -83,7 +83,6 @@ def any_msg(message):
         return
     new_vertex = reverse_button[current_vertex][message.text]
     inv = inventory.Inventory()
-    print(current_vertex, new_vertex)
     inv.__dict__ = save[client_id][1]
     inv.visit_add(new_vertex)
     for item in inventory_list[new_vertex]:
@@ -114,4 +113,6 @@ print(f'{config.BotKey=}')
 print(f'{inventory_list=}')
 print(f'{inventory.Inventory.visit_req=}')
 print(f'{inventory.Inventory.inventory_req=}')
+if __name__ == '__main__':
+    bot.infinity_polling()
 input()
