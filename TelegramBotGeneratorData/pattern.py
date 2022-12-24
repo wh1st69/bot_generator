@@ -19,7 +19,7 @@ with open('TelegramBotData/adjacency_list.json') as fp:
 with open('TelegramBotData/button.json') as fp:
     button = load(fp)
 with open('TelegramBotData/save.json') as fp:
-    save = load(fp)
+    save = {int(k): v for k, v in load(fp).items()}
 with open('TelegramBotData/inventory_list.json', 'r') as fp:
     inventory_list = load(fp)
 with open('TelegramBotData/visited_req_list.json', 'r') as fp:
