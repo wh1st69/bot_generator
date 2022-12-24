@@ -10,7 +10,7 @@ inventory.Inventory.size = config.inventory_size
 inventory.Inventory.visit_req = [[] for _ in range(inventory.Inventory.node)]
 inventory.Inventory.inventory_req = [[] for _ in range(inventory.Inventory.node)]
 
-reverse_button = {}
+reverse_button = [{} for _ in range(config.node)]
 
 with open('TelegramBotData/text.json') as fp:
     text = load(fp)
@@ -29,9 +29,9 @@ with open('TelegramBotData/inventory_req_list.json', 'r') as fp:
     for v, j in load(fp):
         inventory.Inventory.set_inventory_req(v, j)
 
-for i in button:
-    for v, k in enumerate(i):
-        reverse_button[k] = v
+for i, l in enumerate(button):
+    for v, k in enumerate(l):
+        reverse_button[i][k] = v
 
 
 def save_wrapper(func):
@@ -77,11 +77,11 @@ def any_msg(message):
     client_id = message.chat.id
     keyboard_remove = telebot.types.ReplyKeyboardRemove()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    if message.text not in reverse_button.keys():
+    current_vertex = save[client_id][0]
+    if message.text not in reverse_button[current_vertex].keys():
         bot.send_message(message.chat.id, "Жмякай кнопки падла!", reply_markup=keyboard)
         return
-    new_vertex = reverse_button[message.text]
-    current_vertex = save[client_id][0]
+    new_vertex = reverse_button[current_vertex][message.text]
     inv = inventory.Inventory()
     print(current_vertex, new_vertex)
     inv.__dict__ = save[client_id][1]
