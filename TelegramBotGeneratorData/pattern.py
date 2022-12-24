@@ -71,6 +71,13 @@ def any_msg(message):
     save[client_id] = [vertex, inv.__dict__]
 
 
+@bot.message_handler(commands=['admin_bot_stop'])
+@save_wrapper
+def bot_stop(message):
+    print(f'Bot stopped by {message.chat.id}')
+    bot.stop_bot()
+
+
 @bot.message_handler(content_types=["text"])
 @save_wrapper
 def any_msg(message):
@@ -114,5 +121,4 @@ print(f'{inventory_list=}')
 print(f'{inventory.Inventory.visit_req=}')
 print(f'{inventory.Inventory.inventory_req=}')
 if __name__ == '__main__':
-    bot.infinity_polling()
-input()
+    bot.polling()
