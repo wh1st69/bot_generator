@@ -74,8 +74,10 @@ def any_msg(message):
 @bot.message_handler(commands=['admin_bot_stop'])
 @save_wrapper
 def bot_stop(message):
-    print(f'Bot stopped by {message.chat.id}')
-    bot.stop_bot()
+    if message.chat.id == config.AdminID:
+        bot.send_message(message.chat.id, 'Остановка бота')
+        print(f'Bot stopped by {message.chat.id}')
+        bot.stop_polling()
 
 
 @bot.message_handler(content_types=["text"])
@@ -120,5 +122,6 @@ print(f'{config.BotKey=}')
 print(f'{inventory_list=}')
 print(f'{inventory.Inventory.visit_req=}')
 print(f'{inventory.Inventory.inventory_req=}')
+print(f'{config.AdminID}')
 if __name__ == '__main__':
     bot.polling()
