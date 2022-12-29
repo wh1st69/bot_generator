@@ -30,6 +30,9 @@ def any_msg(message):
         print('Аккаунт админа зафиксирован')
         print('Ожидайте создания всех необходимых файлов')
         bot.stop_polling()
+    else:
+        bot.send_message(message.chat.id, 'Возникли некоторые проблемы. Проверьте корректность введенного кода или '
+                                          'перезапустите программу')
 
 
 bot.stop_polling()
