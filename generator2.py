@@ -14,7 +14,7 @@ os.chdir(s)
 adj_list = json.load(open('adjacency_list.json', 'r'))
 print_adj_list(adj_list)
 
-for i in range(int(input('Введите количество удалений, которое хотите сделать: '))):
+for _ in range(int(input('Введите количество удалений, которое хотите сделать: '))):
     v = int(input('Введите индекс вершины, у которой хотите удалить связь: '))
     u = int(input('Введите индекс вершины, связь с которой хотите удалить: '))
     while u in adj_list[v]:
@@ -22,7 +22,7 @@ for i in range(int(input('Введите количество удалений, 
 
 print_adj_list(adj_list)
 
-for i in range(int(input('Введите количество ребер в графе, которое вы хотите сейчас добавить: '))):
+for _ in range(int(input('Введите количество ребер в графе, которое вы хотите сейчас добавить: '))):
     u, v = list(map(int, input('Введите номера вершин, между которыми есть ребро (из первой во вторую) (индексация '
                                'идет с нуля): \n').split()))
     adj_list[u].append(v)
