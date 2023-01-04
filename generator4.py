@@ -3,21 +3,24 @@ import os  # Переход в другую директорию
 
 
 def print_ireq(ireq):
+    """Функция вывода требований по инвентарю"""
     print('Сейчас требования по инвентарю выглядят так:')
-    for u, t in ireq:
-        print(f'Что-бы попасть в вершину {u} (индексация с нуля), нужно иметь элемент инвентаря №{t}')
+    for v, txt in ireq:
+        print(f'Что-бы попасть в вершину {v} (индексация с нуля), нужно иметь элемент инвентаря №{txt}')
 
 
 def print_vreq(vreq):
+    """Функция вывода требований по посещенным вершинам"""
     print('Сейчас требования по посещённым вершинам выглядят так:')
-    for u, t in vreq:
-        print(f'Что-бы попасть в вершину {u} (индексация с нуля), нужно посетить вершину №{t}')
+    for v, txt in vreq:
+        print(f'Что-бы попасть в вершину {v} (индексация с нуля), нужно посетить вершину №{txt}')
 
 
 def print_ilist(ilst):
+    """Функция вывода обновлений инвенторя"""
     print('Сейчас в этих токах обновляется инвентарь так:')
-    for u, t in enumerate(ilst):
-        print(f'В точке {u} (индексация с нуля), изменяются элементы инвентаря ', *t)
+    for v, txt in enumerate(ilst):
+        print(f'В точке {v} (индексация с нуля), изменяются элементы инвентаря ', *txt)
 
 
 # Переход в папку бота
@@ -33,11 +36,12 @@ inv_req = json.load(open('inventory_req_list.json', 'r'))
 # Вывод требований
 print_ireq(inv_req)
 
+# Удаление требований
 for _ in range(int(input('Введите количество удалений, которое хотите сделать: '))):
     t = [int(i) for i in input('Введите индекс вершины и поле инвенторя:\n').split()]
     while t in inv_req:
         inv_req.remove(t)
-		
+
 # Вывод требований
 print_ireq(inv_req)
 
@@ -51,7 +55,6 @@ for _ in range(int(input('Введите количество требовани
 open('inventory_req_list.json', 'w').write(json.dumps(inv_req, indent=4, ensure_ascii=False))
 os.system(cls)
 
-
 # Требования по посещенным вершинам
 # Считывание требований
 visit_req = json.load(open('visited_req_list.json', 'r'))
@@ -59,11 +62,12 @@ visit_req = json.load(open('visited_req_list.json', 'r'))
 # Вывод требований
 print_vreq(visit_req)
 
+# Удаление требований
 for _ in range(int(input('Введите количество удалений, которое хотите сделать: '))):
     t = [int(i) for i in input('Введите индексы двух вершин:\n').split()]
     while t in visit_req:
         visit_req.remove(t)
-		
+
 # Вывод требований
 print_vreq(visit_req)
 
@@ -77,7 +81,6 @@ for _ in range(int(input('Введите количество требовани
 open('visited_req_list.json', 'w').write(json.dumps(visit_req, indent=4, ensure_ascii=False))
 os.system(cls)
 
-
 # Обновления полей инвентаря
 # Считывание
 inv_list = json.load(open('inventory_list.json', 'r'))
@@ -85,11 +88,12 @@ inv_list = json.load(open('inventory_list.json', 'r'))
 # Вывод
 print_ilist(inv_list)
 
+# Удаление ненужных обновлений
 for _ in range(int(input('Введите количество удалений, которое хотите сделать: '))):
-    v = int(input('Введите индекс вершины для которой производится удаление: '))
+    u = int(input('Введите индекс вершины для которой производится удаление: '))
     t = int(input('Введите номер поля инвенторя (индексайия с нуля): '))
-    while t in inv_list[v]:
-        inv_list[v].remove(t)
+    while t in inv_list[u]:
+        inv_list[u].remove(t)
 
 # Вывод
 print_ilist(inv_list)

@@ -3,11 +3,12 @@ import os  # Переход в другую директорию
 
 
 def print_buttons(buttons):
+    """Функция вывода текстов для кнопок"""
     print('Сейчас кнопки для вершин выглядят вот так:')
     for i, l in enumerate(buttons):
-        for j, t in enumerate(l):
-            if t:
-                print(f'Переход из вершины {i} в вершину {j} (индексация с нуля) сопровождается текстом:\n"{t}"')
+        for j, txt in enumerate(l):
+            if txt:
+                print(f'Переход из вершины {i} в вершину {j} (индексация с нуля) сопровождается текстом:\n"{txt}"')
 
 
 # Переход в папку бота
@@ -21,10 +22,11 @@ button = json.load(open('button.json', 'r'))
 # Вывод текстов
 print_buttons(button)
 
+# Удаление текста кнопки
 for _ in range(int(input('Введите количество удалений, которое хотите сделать: '))):
     u, v = [int(i) for i in input('Введите индексы вершин, кнопку между которыми вы хотите удалить: ').split()]
     button[u][v] = ''
-	
+
 # Вывод текстов
 print_buttons(button)
 
