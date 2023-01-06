@@ -1,4 +1,5 @@
 import telebot
+import logging
 from telebot import types
 from json import load, dumps
 from TelegramBotData import *
@@ -111,6 +112,9 @@ def any_msg(message):
     inv.visit_add(new_vertex)
     bot.send_message(message.chat.id, 'Что будете делать;)?', reply_markup=keyboard)
     save[client_id] = [new_vertex, inv.__dict__]
+    logging.basicConfig(level=logging.DEBUG, filename='log.log',
+                        format="%(asctime)s %(message)s")
+    logging.debug(f"{client_id}:{current_vertex}->{new_vertex}")
 
 
 print(f'{text=}')
