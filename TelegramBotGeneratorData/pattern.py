@@ -132,3 +132,4 @@ print(f'{inventory.Inventory.inventory_req=}')
 print(f'{config.AdminID}')
 if __name__ == '__main__':
     bot.polling()
+    
