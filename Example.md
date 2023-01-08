@@ -2,6 +2,7 @@
 ___
 ### Генераторы:
 I Генератор:
+
 [program]Введите адрес папки для бота:
 C:\Users\kiril\OneDrive\Рабочий стол\Python\Bot_test
 [program]Введите ключ бота:
