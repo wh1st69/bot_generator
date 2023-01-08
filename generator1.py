@@ -11,7 +11,7 @@ sep = '\\' if os.name == 'nt' else '/'
 s = input('Введите адрес папки для бота:\n')
 BotKey = input('Введите ключ бота:\n')
 n = int(input('Введите количество вершин в графе: '))
-i = int(input('Введите число используемых полей инвенторя: '))
+i = int(input('Введите число используемых полей инвентаря: '))
 
 token = ''.join(map(lambda x: chr(int(x, 16)), open('TelegramBotGeneratorData/token', 'r').readlines()))
 bot = telebot.TeleBot(token)
