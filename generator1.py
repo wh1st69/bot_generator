@@ -50,6 +50,7 @@ d = os.getcwd()
 os.chdir(s)
 if 'TelegramBotData' not in os.listdir(path='.'):
     os.mkdir('TelegramBotData')
+os.mkdir('TelegramBotData/logs')
 
 # Копируем неизменяемые файлы
 shutil.copy(d + f'{sep}TelegramBotGeneratorData{sep}inventory.py', f'TelegramBotData{sep}inventory.py')
