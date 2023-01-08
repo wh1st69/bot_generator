@@ -2,7 +2,8 @@
 ___
 ### Генераторы:
 Первый генератор:
-[program]Введите адрес папки для бота: /n
+```
+[program]Введите адрес папки для бота: 
 C:\Users\kiril\OneDrive\Рабочий стол\Python\Bot_test
 [program]Введите ключ бота:
 5624971121:AAHy2WPndcDe3KesOpDN8NJgVvY2TjSPbC4
@@ -17,8 +18,10 @@ C:\Users\kiril\OneDrive\Рабочий стол\Python\Bot_test
 [program]Ожидайте создания всех необходимых файлов
 
 Process finished with exit code 0
+```
 
 Второй генератор:
+```
 [program]Введите адрес папки для бота:
 C:\Users\kiril\OneDrive\Рабочий стол\Python\Bot_test
 [program]Сейчас список смежости бота выглядит так (индексация с нуля):
@@ -109,4 +112,4 @@ C:\Users\kiril\OneDrive\Рабочий стол\Python\Bot_test
 15 0
 
 Process finished with exit code 0
-
+```
