@@ -1,4 +1,5 @@
 import telebot
+import logging
 from telebot import types
 from json import load, dumps
 from TelegramBotData import *
@@ -33,6 +34,8 @@ for i, l in enumerate(button):
     for v, k in enumerate(l):
         reverse_button[i][k] = v
 
+logging.basicConfig(level=logging.INFO, filename='log.log',
+                    format="%(asctime)s %(levelname)s %(message)s")
 
 def save_wrapper(func):
     def wrapper(*args, **kwargs):
@@ -52,6 +55,7 @@ def any_msg(message):
     inv.visit_add(vertex)
     save[client_id] = [vertex, inv.__dict__]
     bot.send_message(message.chat.id, "Нажми на команду /restart", reply_markup=keyboard)
+    logging.debug(f"{client_id}: Started game")
 
 
 @bot.message_handler(commands=['restart'])  # Начать заново
@@ -69,6 +73,7 @@ def any_msg(message):
             keyboard.add(types.KeyboardButton(text=button[vertex][possible_vertex]))
     bot.send_message(message.chat.id, 'Что будете делать;)?', reply_markup=keyboard)
     save[client_id] = [vertex, inv.__dict__]
+    logging.debug(f"{client_id}: Restarted game")
 
 
 @bot.message_handler(commands=['admin_bot_stop'])
@@ -78,6 +83,7 @@ def bot_stop(message):
         bot.send_message(message.chat.id, 'Остановка бота')
         print(f'Bot stopped by {message.chat.id}')
         bot.stop_polling()
+        logging.debug(f"{client_id}: Stopped bot")
 
 
 @bot.message_handler(content_types=["text"])
@@ -111,6 +117,7 @@ def any_msg(message):
     inv.visit_add(new_vertex)
     bot.send_message(message.chat.id, 'Что будете делать;)?', reply_markup=keyboard)
     save[client_id] = [new_vertex, inv.__dict__]
+    logging.debug(f"{client_id}:{current_vertex}->{new_vertex}")
 
 
 print(f'{text=}')
