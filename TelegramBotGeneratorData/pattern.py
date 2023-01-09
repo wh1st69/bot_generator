@@ -55,7 +55,7 @@ def any_msg(message):
     inv.visit_add(vertex)
     save[client_id] = [vertex, inv.__dict__]
     bot.send_message(message.chat.id, "Нажми на команду /restart", reply_markup=keyboard)
-    logging.info(f"{client_id}: Started game")
+    logging.debug(f"{client_id}: Started game")
 
 
 @bot.message_handler(commands=['restart'])  # Начать заново
@@ -73,7 +73,7 @@ def any_msg(message):
             keyboard.add(types.KeyboardButton(text=button[vertex][possible_vertex]))
     bot.send_message(message.chat.id, 'Что будете делать;)?', reply_markup=keyboard)
     save[client_id] = [vertex, inv.__dict__]
-    logging.info(f"{client_id}: Restarted game")
+    logging.debug(f"{client_id}: Restarted game")
 
 
 @bot.message_handler(commands=['admin_bot_stop'])
@@ -83,7 +83,7 @@ def bot_stop(message):
         bot.send_message(message.chat.id, 'Остановка бота')
         print(f'Bot stopped by {message.chat.id}')
         bot.stop_polling()
-        logging.info(f"{message.chat.id}: Stopped bot")
+        logging.debug(f"{client_id}: Stopped bot")
 
 
 @bot.message_handler(content_types=["text"])
@@ -117,7 +117,7 @@ def any_msg(message):
     inv.visit_add(new_vertex)
     bot.send_message(message.chat.id, 'Что будете делать;)?', reply_markup=keyboard)
     save[client_id] = [new_vertex, inv.__dict__]
-    logging.info(f"{client_id}:{current_vertex}->{new_vertex}")
+    logging.debug(f"{client_id}:{current_vertex}->{new_vertex}")
 
 
 print(f'{text=}')
