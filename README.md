@@ -530,4 +530,4 @@ ___
 </details>
 
 ___
-![Alt-текст](/projectgraf.png "Пример графа")
+![Alt-текст](/TelegramBotGeneratorData/projectgraf.png "Пример графа")
