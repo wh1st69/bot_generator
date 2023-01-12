@@ -1,5 +1,5 @@
 import os  # Переход в другую директорию + создание папки для файлов бота
-import sys
+import sys  # Завершение работы программы
 import shutil  # Копирование неизменяемых файлов пользователю
 import json  # Сохранение списков и словарей для корректной работы других генераторов
 import telebot  # Для подтверждения админки
@@ -38,8 +38,8 @@ def any_msg(message):
                                           'перезапустите программу')
 
 
-# bot.stop_polling()
-# bot.polling()
+bot.stop_polling()
+bot.polling()
 
 # Создание всех файлов
 # config.py
