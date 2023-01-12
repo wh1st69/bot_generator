@@ -2,7 +2,7 @@ import telebot  # Основная библиотека для бота
 import logging  # Библиотека для логов
 from telebot import types  # Для настройки кнопок
 from json import load, dumps  # Для считывания и записи словарей и списков
-from TelegramBotData import *  # Инвентарь и конфиг бота
+from TelegramBotData.lib import *  # Инвентарь и конфиг бота
 
 bot = telebot.TeleBot(config.BotKey)  # Создание объекта бота
 
@@ -15,20 +15,20 @@ inventory.Inventory.inventory_req = [[] for _ in range(inventory.Inventory.node)
 # Считывание всей необходимой для работы бота информации
 reverse_button = [{} for _ in range(config.node)]
 
-with open('TelegramBotData/text.json') as fp:
+with open('TelegramBotData/static/text.json') as fp:
     text = load(fp)  # Текста для вершин
-with open('TelegramBotData/adjacency_list.json') as fp:
+with open('TelegramBotData/static/adjacency_list.json') as fp:
     inventory.adjacency_list = load(fp)  # Список смежности
-with open('TelegramBotData/button.json') as fp:
+with open('TelegramBotData/static/button.json') as fp:
     button = load(fp)  # Текста кнопок перехода между вершинами
-with open('TelegramBotData/save.json') as fp:
+with open('TelegramBotData/save/save.json') as fp:
     save = {int(k): v for k, v in load(fp).items()}  # Сохраненные пользователи
-with open('TelegramBotData/inventory_list.json', 'r') as fp:
+with open('TelegramBotData/static/inventory_list.json', 'r') as fp:
     inventory_list = load(fp)  # Изменения инвентаря
-with open('TelegramBotData/visited_req_list.json', 'r') as fp:
+with open('TelegramBotData/static/visited_req_list.json', 'r') as fp:
     for v, u in load(fp):
         inventory.Inventory.set_visit_req(v, u)  # Создание требований по посещенным вершинам
-with open('TelegramBotData/inventory_req_list.json', 'r') as fp:
+with open('TelegramBotData/static/inventory_req_list.json', 'r') as fp:
     for v, j in load(fp):
         inventory.Inventory.set_inventory_req(v, j)  # Создание требований по предметам инвентаря
 
@@ -150,6 +150,6 @@ if __name__ == '__main__':
     logging.debug(f'{inventory_list=}')
     logging.debug(f'{inventory.Inventory.visit_req=}')
     logging.debug(f'{inventory.Inventory.inventory_req=}')
-    logging.debug(f'{config.AdminID}')
+    logging.debug(f'{config.AdminID=}')
     logging.info('Bot started')
     bot.polling()

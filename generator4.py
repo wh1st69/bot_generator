@@ -26,7 +26,7 @@ def print_ilist(ilst):
 # Переход в папку бота
 cls = 'cls' if os.name == 'nt' else 'clear'
 sep = '\\' if os.name == 'nt' else '/'
-s = input('Введите адрес папки для бота:\n') + f'{sep}TelegramBotData'
+s = input('Введите адрес папки для бота:\n') + f'{sep}TelegramBotData{sep}static'
 os.chdir(s)
 
 # Требования по предметам в инвентаре

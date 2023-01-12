@@ -13,7 +13,7 @@ def print_buttons(buttons):
 
 # Переход в папку бота
 sep = '\\' if os.name == 'nt' else '/'
-s = input('Введите адрес папки для бота:\n') + f'{sep}TelegramBotData'
+s = input('Введите адрес папки для бота:\n') + f'{sep}TelegramBotData{sep}static'
 os.chdir(s)
 
 # Считывание текстов кнопок
